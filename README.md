@@ -21,7 +21,7 @@
 ---
 
 ## 🗺️ Repository Map
-> 실제 폴더/파일명은 저장소 구조에 맞게 조정하세요. (예: `FPGA 최종프로젝트`, `Verilog STUDY` 등)
+> FPGA 최종프로젝트
 
 ---
 
