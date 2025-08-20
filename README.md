@@ -34,19 +34,18 @@
 ---
 
 ## 🔢 Pinout (Basys3)
-> 아래는 예시입니다. 실 사용 XDC에 맞춰 갱신하세요.
 
 | 기능 | 핀 | 비고 |
 |---|---|---|
 | CLK100MHz | W5 | 기본 시스템 클럭 |
 | BTN(CENTER) | U18 | 리셋/모드 |
-| UART_TXD | V12 | PC로 출력 |
-| UART_RXD | U12 | PC에서 입력 |
+| UART_TXD | A18 | PC로 출력 |
+| UART_RXD | B18 | PC에서 입력 |
 | TRIG(HC-SR04) | A14 | 초음파 트리거 |
-| ECHO(HC-SR04) | D14 | 초음파 에코 입력 |
-| DHT11_DATA | C17 | 1-wire 데이터 |
-| FND[an0..3] | (예: J17, J18, T9, J14) | 공통 애노드 |
-| FND[seg a..g,dp] | (예: K18..) | 세그먼트 |
+| ECHO(HC-SR04) | A16 | 초음파 에코 입력 |
+| DHT11_DATA | J1 | 1-wire 데이터 |
+| FND | 공통 애노드 |
+| FND | 세그먼트 |
 
 ---
 
