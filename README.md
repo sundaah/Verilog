@@ -31,4 +31,50 @@
 - **Display**: 7-세그 4~6자리 멀티플렉싱, 디바운싱 포함 입력 처리  
 - **I/O Abstraction**: 각 센서는 독립 모듈화 → Top에서 단순 와이어링  
 
-### Block Diagram (개략)
+---
+
+## 🔢 Pinout (Basys3)
+> 아래는 예시입니다. 실 사용 XDC에 맞춰 갱신하세요.
+
+| 기능 | 핀 | 비고 |
+|---|---|---|
+| CLK100MHz | W5 | 기본 시스템 클럭 |
+| BTN(CENTER) | U18 | 리셋/모드 |
+| UART_TXD | V12 | PC로 출력 |
+| UART_RXD | U12 | PC에서 입력 |
+| TRIG(HC-SR04) | A14 | 초음파 트리거 |
+| ECHO(HC-SR04) | D14 | 초음파 에코 입력 |
+| DHT11_DATA | C17 | 1-wire 데이터 |
+| FND[an0..3] | (예: J17, J18, T9, J14) | 공통 애노드 |
+| FND[seg a..g,dp] | (예: K18..) | 세그먼트 |
+
+---
+
+## 🕒 Watch & Stopwatch
+- **시계**: 1 Hz tick 기반 `HH:MM:SS` 증가, UART로 시간 설정 명령 지원(예: `T,12:34:56\n`).  
+- **스톱워치**: 시작/정지/리셋, 랩(옵션). 1 kHz 내부 카운터 → 표시 단위 10 ms/100 ms 선택.  
+
+## 📏 HC-SR04 Timing 요약
+- TRIG 10 µs High → ECHO High 펄스 폭 ∝ 거리  
+- 거리[cm] ≈ `ECHO_폭[µs] / 58`  
+- 타임아웃/에러 플래그 제공, UART로 최근 결과 조회 가능  
+
+## 🌡️ DHT11 Timing 요약
+- Start Low ≥18 ms → DHT11 응답(80 µs Low/High) → 40bit 데이터  
+- 비트 판정 임계치 파라미터화, 재시도/센서 미연결 검사 포함  
+
+---
+
+## 🧪 Simulation
+- 각 모듈별 TB 제공(`tb_units/…`), Top 통합 TB에서 모드 전환/명령 시나리오 검증  
+
+---
+
+## 🧱 Design Notes
+- 모든 비동기 입력은 **2-FF 동기화 + 디바운스**  
+- 정수 기반 고정소수점 스케일링 → 나눗셈 회피  
+- FSM 모듈화, 인터페이스 문서화  
+
+---
+
+
